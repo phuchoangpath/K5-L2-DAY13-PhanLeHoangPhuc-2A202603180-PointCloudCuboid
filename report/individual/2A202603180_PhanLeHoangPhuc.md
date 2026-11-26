@@ -19,18 +19,19 @@ Hai frame đọc kỹ: s01f29 và s01f59.
 
 | Frame | Phía trước xe ở cạnh nào của ảnh nhìn từ trên xuống; +x, +y chỉ về đâu | Mặt đường (phẳng/dốc; thấp hơn LiDAR ~ m) | Vật xa nhất đọc được (~ m) | Loại vật thấy | Vật phía sau / hai bên | Cụm chưa đọc được |
 |---|---|---|---|---|---|---|
-| s01f29 | Cạnh trên (-y hướng lên phía trước); +x chỉ sang bên trái xe; +y chỉ ra phía sau xe (trong ảnh t1-s01f29-top.png mình đã vẽ 3 mũi tên màu xanh dương có chú thích chữ vàng -y, +y, x+) | Mặt đường tương đối phẳng, thấp hơn LiDAR khoảng 1.71 m đến 1.73 m | khoảng 40m - car | Ô tô con (Car), Xe tải van chở hàng thùng kín (Truck) | Phía sau có xe con màu trắng qua cam09; bên phải có xe con đi cùng chiều qua cam06 và cam07; phía trước trên cam03 có xe sedan trắng đang chạy | Dải cây xanh ven đường và các cọc tiêu ven lề phải bị thưa điểm |
-| s01f59 | Cạnh trên (-y hướng lên phía trước); +x chỉ sang bên trái xe; +y chỉ ra phía sau xe (thể hiện rõ trên ảnh t1-s01f59-top.png qua các vòng quét LiDAR đồng tâm tỏa ra từ nóc xe) | Mặt đường phẳng, thấp hơn LiDAR khoảng 1.65 m đến 1.70 m | khoảng 40m - car | Ô tô con (Car), Người đi xe hai bánh (Cyclist), Người đi bộ (Pedestrian) | Phía sau có xe con qua cam09; sát sườn phải qua cam06 có một xe sedan trắng đỗ rất gần; phía trước trên cam03 có hai xe trắng đang dừng chờ đèn đỏ dưới giá long môn | Cụm biển báo giao thông trên giá long môn gắn trên cao qua cam03 dội tín hiệu intensity mạnh nhưng điểm thưa |
+| s01f29 | Hướng nhìn từ trên xuống: phía trước xe là hướng -y (hướng nhìn của cam01 và cam03); trục +y chỉ ra phía sau xe (hướng nhìn của cam09); trục +x chỉ sang bên trái xe. Khi xoay dọc như ảnh vẽ t1-s01f29-top.png: phía trước xe -y ở cạnh trên, trục +y ở cạnh dưới, trục +x ở cạnh trái | Mặt đường bằng phẳng, không dốc, thấp hơn tâm cảm biến LiDAR khoảng 1.71 m đến 1.73 m (thể hiện rõ trên khung Side và Front tiếp xúc phẳng sát đáy xe tải van và xe con) | khoảng 40m - car | Ô tô con (Car), xe tải van chở hàng thùng kín (Truck) | Phía sau (cam09) có xe con màu trắng bám đuôi; phía trước (cam01, cam03) có xe sedan trắng đang chạy; bên trái là dòng xe ngược chiều gồm xe tải van và các xe con; bên phải có dải cây xanh và lề đường | Cụm điểm phản xạ tán xạ từ dải cây xanh bồn hoa ven đường và các biển báo, cọc tiêu ở xa chỉ có vài điểm thưa thớt |
+| s01f59 | Hướng nhìn từ trên xuống: phía trước xe là hướng -y (hướng xe tiến tới vạch dừng đèn đỏ dưới giá long môn); trục +y chỉ ra phía sau xe (về phía xe sedan bám đuôi trong cam09); trục +x chỉ sang bên trái xe (về phía vỉa hè có người đi bộ và xe máy) | Mặt đường rất phẳng, xe đang dừng chờ đèn đỏ, mặt đường thấp hơn tâm cảm biến LiDAR khoảng 1.65 m đến 1.70 m | khoảng 40m - car | Ô tô con (Car), người đi xe hai bánh (Cyclist), người đi bộ (Pedestrian) | Phía sau (cam09) có 1 xe sedan màu trắng; phía trước (cam01, cam03) có 2 xe ô tô màu trắng dừng trước vạch đèn đỏ; bên phải (cam05, cam06) có 1 xe sedan màu trắng đỗ song song sát sườn xe mình; bên trái có người đi xe máy và người đi bộ | Cụm điểm phản xạ từ kết cấu giàn thép của giá long môn treo biển chỉ dẫn trên cao (cam01, cam03) và tán cây ven vỉa hè |
 
-So sánh ảnh Camera và Point Cloud LiDAR dựa trên thực tế ảnh chụp:
-- 3 điều chỉ Camera cho biết:
-  1. Màu sơn nhận diện thực tế của phương tiện: Trên cam03 và cam09 của hai frame thấy rõ các xe đều là xe sơn màu trắng, xe tải van chở hàng có dán đề can chữ màu đỏ trên nền sơn trắng xám.
-  2. Biển số xe, vạch kẻ phân làn màu trắng trên mặt đường, tín hiệu đèn giao thông màu đỏ trên cột đèn và các biển chỉ dẫn giao thông chữ trắng trên nền xanh gắn ở giá long môn trên cao.
-  3. Trạng thái hoạt động tức thời của xe như đèn phanh sau màu đỏ đang sáng khi các xe dừng chờ đèn đỏ ở frame s01f59.
-- 3 điều chỉ LiDAR cho biết:
-  1. Khoảng cách vật lý chính xác theo hệ mét từ cảm biến tới từng vị trí vật thể x, y, z: Ví dụ ở frame s01f59 LiDAR đo được chính xác xe con phía trước cách xe mình đúng 3.01 m, điều mà nhìn ảnh camera 2D không thể biết chính xác bằng mét.
-  2. Kích thước hình học 3D thực tế dài, rộng, cao chuẩn: Thấy rõ xe tải van Huolala ở frame s01f29 dài 6.26 m, rộng 2.56 m, cao 2.38 m mà không bị biến dạng theo góc mở ống kính mắt cá của cam06.
-  3. Khả năng phát hiện và đo đạc hoàn toàn độc lập với điều kiện ánh sáng: Các xe nằm trong bóng râm hoặc đối tượng bị che khuất một phần vẫn dội tia laser về rõ ràng, không bị ảnh hưởng bởi chói sáng bầu trời.
+So sánh ảnh Camera và Point Cloud LiDAR dựa trên thực tế 7 camera trong hai frame:
+3 điều chỉ Camera cho biết:
+1. Màu sơn thực tế của phương tiện: Quan sát cả 7 camera thấy các xe ô tô xung quanh đều có màu sơn trắng; riêng xe tải van chở hàng ở frame s01f29 có dán đề can chữ màu đỏ nổi bật trên nền xe.
+2. Tín hiệu giao thông và nội dung thông tin: Camera cho thấy rõ đèn giao thông trên cột đang hiển thị màu đỏ ở frame s01f59; biển báo chỉ dẫn chữ trắng trên nền xanh gắn ở giá long môn trên cao; vạch sơn kẻ đường màu trắng; biển số của từng xe.
+3. Nhận diện chi tiết bề mặt và linh kiện: Thấy rõ đèn hậu màu đỏ đang sáng khi các xe đạp phanh dừng chờ đèn đỏ; mặt kính chắn gió trong suốt; chi tiết hoa và cây xanh trên dải phân cách.
+
+3 điều chỉ LiDAR cho biết:
+1. Khoảng cách vật lý chính xác theo hệ mét: LiDAR đo đạc chính xác xe con phía trước cách xe mình đúng 3.01 m ở frame s01f59, hoặc xe tải van ở frame s01f29 cách 17.61 m, đây là thông số mà mắt nhìn qua ảnh 2D camera không thể lượng hóa chính xác được.
+2. Kích thước hình khối 3D thực tế: Cung cấp đúng chiều dài, chiều rộng, chiều cao của vật thể trong không gian thực (ví dụ xe tải van dài 6.26 m, rộng 2.56 m, cao 2.38 m) mà không bị sai lệch phối cảnh hay hiện tượng méo góc mở quang học như ở các camera góc rộng cam06 và cam07.
+3. Khả năng bao quát 360 độ độc lập với ánh sáng: Định vị đồng thời toàn bộ vật thể xung quanh xe trong cùng một hệ tọa độ đo đạc mét, không bị ảnh hưởng bởi góc tối, bóng râm hay ánh sáng chói chang từ bầu trời.
 
 Tám frame lướt:
 
