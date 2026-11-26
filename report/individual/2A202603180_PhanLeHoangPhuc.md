@@ -3,7 +3,7 @@
 ## 1. Kết luận trước
 - Mã số sinh viên: 2A202603180. Task CVAT: D13-2A202603180.
 - 10 frame LiDAR của mình: s01f29, s01f59, s02f08, s02f39, s03f15, s03f43, s04f21, s04f39, s05f10, s05f33.
-- Môi trường thực hành: Hệ điều hành Windows 11 64-bit, trình duyệt Google Chrome, phiên bản CVAT 3D v2.83.0. MSSV bạn ngồi cạnh cùng đối chiếu: 2A202603179.
+- Môi trường thực hành: Hệ điều hành Windows 11 64-bit, trình duyệt Google Chrome, phiên bản CVAT 3D v2.83.0. Phần làm chung và đối chiếu cùng bạn ngồi cạnh được giảng viên thông báo bỏ qua trong buổi lab để tập trung hoàn thiện task cá nhân.
 - Tổng số cuboid 3D mình đã gán nhãn: 81 cuboid (vượt chỉ tiêu tối thiểu 50 cuboid, trung bình 8.1 cuboid mỗi frame). Frame có số cuboid ít nhất là s03f43 và s05f33 (5 cuboid mỗi frame) do các phân đoạn này mật độ xe thưa thớt, các xe ở cự ly xa hơn 50 m có mật độ điểm quá thấp không đủ căn cứ gán nhãn.
 - Kết quả chạy tự kiểm tra lab.py selfcheck: Có 18 trên 81 cuboid được hệ thống gắn cờ cảnh báo (khoảng 22.2%). Các cảnh báo này chủ yếu rơi vào các đối tượng người đi bộ hoặc xe hai bánh trên vỉa hè có cao độ đáy cao hơn mặt lòng đường, hoặc xe ở dốc nhẹ có chênh lệch nhỏ về cao độ đáy z_bottom.
 - Mức độ tin cậy: Mình tự tin nhất ở góc hướng yaw (vạch đỏ trục X chỉ chuẩn xác hướng mũi xe khớp với hình ảnh camera) và kích thước các xe ô tô con Car, xe tải Truck. Phần mình thấy còn thách thức nhất là đối tượng người đi bộ Pedestrian do kích thước hình học nhỏ, số lượng hạt point ít và đứng trên vỉa hè có cao độ thay đổi.
@@ -55,7 +55,7 @@ Tám frame lướt:
 | (c) Người đi bộ hoặc xe hai bánh | s01f59, 9 | Cyclist | Đúng (yaw = 261.4°, chỉ theo hướng lái xe) | Đáy tiếp xúc mặt vỉa hè (z_bottom = -1.252 m) | Đã kiểm tra đầy đủ 3 khung chiếu và preview camera | Phù hợp bảng 4.3 (1.90 m x 1.00 m x 1.55 m) |
 
 Đánh giá hiệu chuẩn và các trường hợp loại trừ:
-- Vòng hiệu chuẩn: Trong quá trình thao tác ban đầu, mình và các bạn dễ gặp lỗi xoay hộp trên khung Side hoặc Front khiến hộp bị nghiêng roll hoặc pitch. Toàn bộ lớp đã thống nhất nguyên tắc: Tuyệt đối chỉ xoay góc yaw trên khung chiếu Top-down, giữ cho hộp luôn đứng thẳng và điều chỉnh cao độ z sao cho mặt đáy tiếp xúc phẳng với mặt đường khoảng âm 1.7 m.
+- Vòng hiệu chuẩn: Giảng viên đã thông báo bỏ qua vòng hiệu chuẩn chung trên task HC485087 để tập trung hoàn thành task cá nhân. Trong quá trình thao tác, mình rút ra nguyên tắc quan trọng: Tuyệt đối chỉ xoay góc yaw trên khung chiếu Top-down, giữ cho hộp luôn đứng thẳng và điều chỉnh cao độ z sao cho mặt đáy tiếp xúc phẳng với mặt đường khoảng âm 1.7 m.
 - Các vật thể bỏ qua vì không đủ cơ sở: Tại frame s01f29, vị trí tọa độ khoảng x = -18.5 m, y = -45.0 m có một cụm khoảng 4-5 điểm rải rác; do số điểm quá thưa và đối chiếu camera bị che khuất nên không thể xác định loại phương tiện, mình quyết định không gán nhãn theo quy tắc LOW_VISIBILITY.
 
 ## 4. Bốn hiện tượng chất lượng (Bước 4)
@@ -107,7 +107,7 @@ Kết quả tự kiểm và đối chiếu chéo:
   1. s01f29 idx 5: Ban đầu đáy hộp bị lún nhẹ dưới mặt đường; sau khi quan sát preview camera mình đã nâng tâm z lên để bánh xe tiếp xúc chính xác mặt đường.
   2. s01f59 idx 9: Góc xoay ban đầu bị lệch trục ngang; mình đã căn chỉnh lại nút xoay trên khung Top để vạch đỏ chỉ chuẩn xác dọc theo khung xe máy hướng về trước (yaw = 261.4°).
   - Các cảnh báo giữ nguyên: Các cờ cảnh báo đáy hộp của một số đối tượng Pedestrian và Cyclist tại s01f59 được mình giữ nguyên vì người và phương tiện này đang đứng trên vỉa hè cao hơn lòng đường xe chạy khoảng 0.25 - 0.40 m.
-- Đổi kiểm chéo: Mình đã thực hiện kiểm chéo với bạn có MSSV 2A202603179. Hai số liệu đối chiếu là: Tổng số cuboid hợp lệ (từ 50 cuboid trở lên, bài mình đạt 81 cuboid) và góc yaw của các xe cùng chiều (268° - 272°). Kết quả đối chiếu hoàn toàn trùng khớp và thống nhất quy chuẩn gán nhãn.
+- Đổi kiểm chéo: Giảng viên thông báo bỏ qua phần đổi kiểm chéo và làm chung trong buổi lab, nên mình tập trung tự soát toàn bộ 81 cuboid bằng công cụ lab.py sync và selfcheck. Kết quả kiểm tra hiển thị 81 cuboid đều hợp lệ và đạt chuẩn yêu cầu bài nộp.
 
 ## 6. Ý nghĩa của nhãn, cách dùng AI và điều còn chưa chắc
 Ý nghĩa từ góc độ mô hình học máy:
